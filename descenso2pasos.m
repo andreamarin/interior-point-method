@@ -23,7 +23,7 @@ kinit = k;
 k = 0;
 
 crit = 1;
-maxiter = 1000;
+maxiter = 5;
 
 Wk = W0;
 Hk = H0;
@@ -35,21 +35,18 @@ while crit >= tol && k < maxiter
     Q = Wk'*Wk; % matriz de kxk
     for j=1:p
         Xj = X(:,j); % vector de rx1
-        c = (Xj'*Wk)'; % vector de 1xk
+        c = -(Xj'*Wk)'; % vector de 1xk
         [Hk1(:,j), ~, ~] = punintpc(Q, A, c, b);
-        %Hk1(:,j) = quadprog(Q, c, -A, b);
     end
     
     Wk1 = ones(r,kinit);
     Q = Hk1*Hk1';
     for i=1:r
         Xi = X(i,:);
-        c = (Xi*Hk1')';
+        c = -(Xi*Hk1')';
         [Wk1(i,:)] = punintpc(Q, A, c, b);
-        %Wk1(i,:) = quadprog(Q, c, -A, b);
     end
     
-    %crit = norm(X-Wk1*Hk1,'fro')^2;
     crit = norm(Hk1 - Hk, 'fro')^2 + norm(Wk1 - Wk, 'fro')^2;
     disp('criterio')
     disp(crit)
