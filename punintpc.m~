@@ -40,19 +40,13 @@ U = diag(mu);
 e = ones(m,1);
 
 % resolver problema lineal para encontrar x0 factible
-% min eTz
-% s.a.  A(x1-x2)-epsilon*e-z=b
-%       x1,x2,z >= 0
-% donde x0 = x1-x2 y epsilon = 1 
-% buscamos que el valor óptimo sea eTz=0
 f = zeros(2*n,1);
 f = [f;ones(m,1)];
 Aeq = [A -A eye(m)];
 beq = b+1;
 lb = zeros(2*n+m,1);
-[xinit,~] = linprog(f,[],[],Aeq,beq,lb,[]);
+[xinit,fval] = linprog(f,[],[],Aeq,beq,lb,[]);
 x = xinit(1:n) - xinit(n+1:2*n);
-%x = ones(n,1);
 
 sigma = 0.5;
 eta = sigma*(y'* mu)/m;
@@ -119,5 +113,5 @@ while(norma > tol && iter < maxiter)
   iter = iter + 1;
 end
 
-%disp(fprintf('finalizó en %3.0f iteraciones',iter))
+disp(fprintf('finalizó en %3.0f iteraciones',iter))
     
