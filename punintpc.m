@@ -52,7 +52,6 @@ beq = b+1;
 lb = zeros(2*n+m,1);
 [xinit,~] = linprog(f,[],[],Aeq,beq,lb,[]);
 x = xinit(1:n) - xinit(n+1:2*n);
-%x = ones(n,1);
 
 sigma = 0.5;
 eta = sigma*(y'* mu)/m;

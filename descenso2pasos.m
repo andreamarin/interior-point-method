@@ -1,3 +1,12 @@
+%---------------------------------------------------------------------------
+% Proyecto 1 Optimizacion Numerica
+% 8 de octubre de 2020
+% ITAM
+%--------------------------------------------------------------------------------
+% INTEGRANTES:
+% Luis Felipe Landa Lizarralde 158228
+% Andrea Perez Vega 154467
+% Andrea Marin Alarcon 158999
 function[W,H] = descenso2pasos(X,k)
 % Método de descenso en 2 pasos
 % Min ||X - WH||F^2 s.a W >=0, H>=0
@@ -23,12 +32,13 @@ kinit = k;
 k = 0;
 
 crit = 1;
-maxiter = 5;
+maxiter = 10;
 
 Wk = W0;
 Hk = H0;
 
 while crit >= tol && k < maxiter
+    disp(k)
     Hk1 = ones(kinit,p);
     A = eye(kinit);
     b = zeros(kinit,1);
@@ -56,8 +66,6 @@ while crit >= tol && k < maxiter
     Wk = Wk1;
     Hk = Hk1;
 end
-
-disp(sprintf('finalizó en %3.0f iteraciones',k))
 
 W = Wk1;
 H = Hk1;
