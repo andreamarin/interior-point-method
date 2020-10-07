@@ -56,8 +56,6 @@ x = xinit(1:n) - xinit(n+1:2*n);
 sigma = 0.5;
 eta = sigma*(y'* mu)/m;
 %-----------------------------------------------
-% vectores para graficacion
-%cnpo=[]; comp =[];
 
 % Condiciones necesarias de primer orden
 F = vertcat(Q*x - A'*mu +c, A*x - y - b, Y*U*e);

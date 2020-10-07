@@ -19,6 +19,7 @@ ks = [5, 20, 30, 60, 80];
 tiempos = [0, 0, 0, 0, 0];
 tiempos_qp = [0, 0, 0, 0, 0];
 
+% iteramos sobre todas las k
 for i=1:5
     k = ks(i);
     
@@ -36,6 +37,7 @@ for i=1:5
     
     tiempos_qp(i) = tEnd_qp;
     
+    % desplegar imagen a lado del resultado de la imagen con quadprog
     figure;
     colormap('gray');
     imshowpair(W*H, Wqp*Hqp, 'montage')
@@ -43,7 +45,8 @@ for i=1:5
     pause(5)
 end
 
+% tabla con tiempos para cada k
 disp('k           tiempo punint       tiempo quadprog')
 for i=1:5
-    disp(sprintf('%3.0f         %6.3f s         %6.3f s', k, tiempos(i), tiempos_qp(i)));
+    disp(sprintf('%3.0f           %6.3f s              %6.3f s', ks(i), tiempos(i), tiempos_qp(i)));
 end
