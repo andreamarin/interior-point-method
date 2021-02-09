@@ -17,7 +17,7 @@ function[W,H] = descenso2pasos(X,k)
 % Out:
 % W: matriz 
 % H: matriz
-
+% -----
 %Parámetros iniciales
 tol = 1e-04;
 [r, p] = size(X);
